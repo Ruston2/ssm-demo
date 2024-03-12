@@ -8,11 +8,11 @@ import com.ssm.maven.core.util.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/book")
 public class BookController {
-    @Resource
+    @Autowired
     private BookService bookService;
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(BookController.class);// 日志文件

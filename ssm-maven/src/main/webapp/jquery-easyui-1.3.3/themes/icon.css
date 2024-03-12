@@ -126,6 +126,14 @@
     background: url('usericons/shuguan.png') no-repeat center center;
 }
 
+.icon-shangpin {
+    background: url('usericons/shangpin.png') no-repeat center center;
+}
+
+.icon-category {
+    background: url('usericons/category.jpg') no-repeat center center;
+}
+
 .icon-home {
     background: url('usericons/home.png') no-repeat center center;
 }

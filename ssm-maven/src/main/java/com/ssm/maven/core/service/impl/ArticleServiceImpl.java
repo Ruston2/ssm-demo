@@ -3,18 +3,18 @@ package com.ssm.maven.core.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 
 import com.ssm.maven.core.dao.ArticleDao;
 import com.ssm.maven.core.entity.Article;
 import com.ssm.maven.core.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
-    @Resource
+    @Autowired
     private ArticleDao articleDao;
 
     @Override

@@ -4,9 +4,9 @@ import com.ssm.maven.core.dao.BookDao;
 import com.ssm.maven.core.entity.Book;
 import com.ssm.maven.core.service.BookService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger
             .getLogger(BookServiceImpl.class);// 日志文件
-    @Resource
+    @Autowired
     private BookDao bookDao;
 
     @Override

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ssm-maven系统登录</title>
+    <title>商城管理系统登录</title>
     <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>--%>
     <style type=text/css>
         body {
@@ -104,6 +104,11 @@
                                     <tr>
                                         <td><input type="password" class=input value="${user.password }" name="password"
                                                    id="password"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/mall/login.jsp">跳转到商城</a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

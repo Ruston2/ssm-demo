@@ -10,7 +10,7 @@
 
     <properties>
         <!-- 数据库相关版本 -->
-        <jdbc.driver.version>5.1.25</jdbc.driver.version>
+        <jdbc.driver.version>8.0.29</jdbc.driver.version>
         <mybatis.version>3.2.5</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <!-- spring版本 -->
@@ -196,6 +196,11 @@
             <version>1.0.24</version>
         </dependency>
         <!-- End: druid -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
 
     </dependencies>
 
@@ -208,21 +213,21 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>8080</port>
-                    <charset>${project.build.sourceEncoding}</charset>
-                    <server>tomcat7</server>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.tomcat.maven</groupId>-->
+<!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
+<!--                <version>2.2</version>-->
+<!--                <configuration>-->
+<!--                    <port>8080</port>-->
+<!--                    <charset>${project.build.sourceEncoding}</charset>-->
+<!--                    <server>tomcat7</server>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
         </plugins>
     </build>

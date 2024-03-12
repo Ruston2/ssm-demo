@@ -137,25 +137,21 @@
                         + "</font>条数据吗？",
                         function (r) {
                             if (r) {
-                                $
-                                        .post(
-                                                "${pageContext.request.contextPath}/article/delete.do",
-                                                {
-                                                    ids: ids
-                                                },
-                                                function (result) {
-                                                    if (result.success) {
-                                                        $.messager.alert(
-                                                                "系统提示",
-                                                                "数据已成功删除！");
-                                                        $("#dg").datagrid(
-                                                                "reload");
-                                                    } else {
-                                                        $.messager.alert(
-                                                                "系统提示",
-                                                                "数据删除失败！");
-                                                    }
-                                                }, "json");
+                                $.post(
+                                        "${pageContext.request.contextPath}/article/delete.do",
+                                        {
+                                            ids: ids
+                                        },
+                                        function (result) {
+                                            if (result.success) {
+                                                $.messager.alert(
+                                                        "系统提示", "数据已成功删除！");
+                                                $("#dg").datagrid("reload");
+                                            } else {
+                                                $.messager.alert(
+                                                        "系统提示", "数据删除失败！");
+                                            }
+                                        }, "json");
                             }
                         });
 

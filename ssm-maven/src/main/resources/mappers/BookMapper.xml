@@ -21,6 +21,7 @@
         <result property="status" column="status"/>
         <result property="hot" column="hot"/>
     </resultMap>
+    <insert id="insertBook"></insert>
 
     <select id="findBooks" parameterType="Map" resultMap="BookResult">
         select id,isbn,path,title,subtitle,market_price,pages,author,publisher,binding,hot,status,supply from ssm_book

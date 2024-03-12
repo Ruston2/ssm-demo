@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.CategoryDao">
+    <resultMap type="Category" id="CategoryResult">
+        <result property="cid" column="cid"/>
+        <result property="cname" column="cname"/>
+    </resultMap>
+    <insert id="saveCategory" parameterType="Category">
+        insert into category(cid,cname) values(#{cid},#{cname})
+    </insert>
+    <update id="modifyCategory" parameterType="Category">
+        update category set cname=#{cname} where cid=#{cid}
+    </update>
+    <delete id="deleteCategory" parameterType="string">
+        delete from category where cid = #{_parameter}
+    </delete>
+
+    <select id="getCategories" parameterType="Map" resultMap="CategoryResult">
+        select cid,cname from category
+        <where>
+            <if test="cname!=null and cname!='' ">
+                and cname like #{cname}
+            </if>
+        </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getTotalCategories" parameterType="Map" resultType="Long">
+        select count(*) from category
+        <where>
+            <if test="cname!=null and cname!='' ">
+                and cname like #{cname}
+            </if>
+        </where>
+    </select>
+    <select id="selectByCid" resultType="com.ssm.maven.core.entity.Category" parameterType="string">
+        select cid,cname from category where cid=#{_parameter}
+    </select>
+
+
+</mapper>

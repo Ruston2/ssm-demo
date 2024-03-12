@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.MallUserDao">
+    <resultMap type="Consumer" id="ConsumerResult">
+        <result property="id" column="cid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="name" column="name"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+    <insert id="insertConsumer" parameterType="Consumer">
+        insert into consumer(id,username,password,email,name) values (#{id},#{username},#{password},#{email},#{name});
+    </insert>
+    <select id="findUserByName" resultType="com.ssm.maven.core.entity.Consumer" parameterType="string">
+        select * from consumer where username=#{_parameter} and is_delete=0;
+    </select>
+    <select id="findUserBUAP" resultType="com.ssm.maven.core.entity.Consumer" parameterType="string">
+        select * from consumer where username=#{0} and password=#{1};
+    </select>
+
+
+</mapper>

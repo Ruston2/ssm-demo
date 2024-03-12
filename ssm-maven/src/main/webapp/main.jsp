@@ -65,25 +65,8 @@
 </div>
 <div region="center">
     <div class="easyui-tabs" fit="true" border="false" id="tabs">
-        <div title="首页" data-options="iconCls:'icon-home'">
-                        <div align="center" style="padding-top: 20px;"><a
-                    href="https://git.oschina.net/zhenfeng13/ssm-demo"
-                    target="_blank" style="font-size: 20px;">开源中国仓库地址</a>
-            </div>
-            <div align="center" style="padding-top: 20px;"><a href="https://github.com/ZHENFENG13/ssm-demo"
-                                                              target="_blank"
-                                                              style="font-size: 20px;">Gitub仓库地址</a></div>
-
-            <div align="center" style="padding-top: 50px;"><a
-                    href="http://download.csdn.net/detail/zhenfengshisan/9813721"
-                    target="_blank" style="font-size: 20px;">项目源码下载(最新代码)</a>
-            </div>
-            <div align="center" style="padding-top: 20px;"><a
-                    href="http://download.csdn.net/detail/zhenfengshisan/9765855"
-                    target="_blank" style="font-size: 20px;">项目源码下载(非maven)</a>
-            </div>
             <div align="center" style="padding-top: 50px">
-                <font color="grey" size="10">ssm demo</font>
+                <font color="grey" size="10">商城管理系统</font>
             </div>
         </div>
     </div>
@@ -100,21 +83,45 @@
                     data-options="plain:true,iconCls:'icon-wenzhang'"
                     style="width: 150px;"> 文章管理</a>
         </div>
-        <div title="图片管理" data-options="iconCls:'icon-shouye'"
-             style="padding:10px">
-            <a
-                    href="javascript:openTab(' 图片设置','pictureManage.jsp?type=1&grade=1','icon-tupians')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-tupian'"
-                    style="width: 150px;"> 图片设置</a>
-        </div>
+<%--        <div title="图片管理" data-options="iconCls:'icon-shouye'"--%>
+<%--             style="padding:10px">--%>
+<%--            <a--%>
+<%--                    href="javascript:openTab(' 图片设置','pictureManage.jsp?type=1&grade=1','icon-tupians')"--%>
+<%--                    class="easyui-linkbutton"--%>
+<%--                    data-options="plain:true,iconCls:'icon-tupian'"--%>
+<%--                    style="width: 150px;"> 图片设置</a>--%>
+<%--        </div>--%>
         <div title="书籍管理" data-options="iconCls:'icon-shuji'"
+                   style="padding:10px">
+        <a
+                href="javascript:openTab(' 全部书籍','allBooksManage.jsp','icon-shuben')"
+                class="easyui-linkbutton"
+                data-options="plain:true,iconCls:'icon-shuben'"
+                style="width: 150px;">全部书籍</a>
+        </div>
+        <div title="商品管理" data-options="iconCls:'icon-jcsjgl'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 全部书籍','allBooksManage.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部商品','allProducts.jsp','icon-shuben')"
                     class="easyui-linkbutton"
                     data-options="plain:true,iconCls:'icon-shuben'"
-                    style="width: 150px;">全部书籍</a>
+                    style="width: 150px;">全部商品</a>
+        </div>
+        <div title="分类管理" data-options="iconCls:'icon-fenlei'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 全部分类','category.jsp','icon-shuben')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-shuben'"
+                    style="width: 150px;">全部分类</a>
+        </div>
+        <div title="测试" data-options="iconCls:'icon-fenlei'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 测试','test.jsp','icon-shuben')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-shuben'"
+                    style="width: 150px;">测试页面</a>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">
@@ -127,6 +134,7 @@
                             style="width: 150px;">
             安全退出</a>
         </div>
+
     </div>
 </div>
 </body>

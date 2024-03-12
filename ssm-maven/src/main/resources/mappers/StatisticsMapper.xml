@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.StatisticsDao">
+    <resultMap type="ProductCategoryDto" id="ProductCategoryResult">
+        <result property="cname" column="cname"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getProductCategory" resultType="com.ssm.maven.core.entity.dto.ProductCategoryDto">
+        SELECT count(*) num,cname from category c,product p where c.cid=p.cid GROUP BY c.cid;
+    </select>
+
+
+</mapper>
