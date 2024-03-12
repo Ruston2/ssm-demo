@@ -17,8 +17,9 @@
     <select id="listOrders" resultMap="OrderShowResult" parameterType="map">
         select o.order_id,p.pimage,p.pname,p.shop_price,o.count,o.totle_price from `order` o ,product p
         <where>
+            is_buy = 0
             <if test="uid!=null and uid !='' ">
-                p.pid = o.pid and uid = #{uid}
+               and p.pid = o.pid and uid = #{uid}
             </if>
             ORDER BY order_id desc
             <if test="start!=null and size!=null">

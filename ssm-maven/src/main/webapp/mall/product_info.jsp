@@ -292,10 +292,10 @@
                 success: function(response) {
                     // This is the callback function that is called if the request succeeds
                     console.log("Success:", response);
-
+                    var data = JSON.parse(response);
                     // You can do something here in response to the server's reply
                     // For example, showing a success message to the user
-                    if(!response.success) {
+                    if(!data.success) {
                         alert("添加失败！");
                     }else {
                         alert("添加成功! ");
@@ -309,5 +309,33 @@
                 }
             });
         });
+
+        $("#comment").click(function (){
+            $.ajax({
+                type: "POST", // or GET, depending on your server setup
+                url: "${pageContext.request.contextPath}/comment/createComment.do",
+                data: {
+                    pid: ${p.pid},
+                    comment: $("#message-text").textContent
+                },
+                success: function(response) {
+                    // This is the callback function that is called if the request succeeds
+                    console.log("Success:", response);
+                    var data = JSON.parse(response);
+                    // You can do something here in response to the server's reply
+                    // For example, showing a success message to the user
+                    if(!data.success) {
+                        alert("评论失败！");
+                    }else {
+                        alert("评论成功! ");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // This callback handles any errors
+                    // Similarly, you can notify the user about the failure
+                    alert("Failed to add product to cart.");
+                }
+            });
+        })
 </script>
 </html>

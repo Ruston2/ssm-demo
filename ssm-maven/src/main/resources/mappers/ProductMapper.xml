@@ -38,6 +38,9 @@
             <if test="pname!=null and pname!='' ">
                 and pname like #{pname}
             </if>
+            <if test="pid!=null and pid!='' ">
+                and pid = #{pid}
+            </if>
         </where>
         ORDER BY pid desc
         <if test="start!=null and size!=null">

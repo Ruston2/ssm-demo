@@ -107,5 +107,16 @@ public class ProductController {
         return "redirect:/mall/product_info.jsp";
     }
 
+    @RequestMapping("/clickItemById")
+    public String clickItemById(String pid,  HttpSession session){
+        HashMap<String, Object> map = new HashMap<>(1);
+        map.put("pid", pid);
+        List<Product> products = productService.findProducts(map);
+        session.setAttribute("p",products.get(0));
+        return "redirect:/mall/product_info.jsp";
+    }
+
+
+
 
 }

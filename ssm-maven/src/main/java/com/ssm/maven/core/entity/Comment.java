@@ -15,5 +15,6 @@ public class Comment {
     private int pid;
     private String comment;
     private int uid;
+    private String createTime;
 
 }

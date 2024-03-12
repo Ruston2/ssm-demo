@@ -105,10 +105,10 @@
         <div style="text-align:right;">
 <%--            <em style="color:#ff6600;">--%>
 <%--                登录后确认是否享有优惠&nbsp;&nbsp;</em>--%>
-            赠送积分: <em id="score" style="color:#ff6600;"></em>&nbsp; 商品金额: <strong id="allPrice" style="color:#ff6600;"></strong>
+            赠送积分: <em id="score" style="color:#ff6600;"></em>&nbsp; 商品金额: <strong id="allPrice" style="color:#ff6600;">￥</strong>
         </div>
         <div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-            <a href="order_info.htm" id="clear" class="clear">清空购物车</a>
+            <a href="#" id="clear" class="clear">清空购物车</a>
             <input type="submit" id="submitOrder" width="100" value="提交订单" name="submit" border="0" style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">
         </div>
@@ -199,7 +199,7 @@
             nameCell.textContent = productName;
 
             var priceCell = document.createElement('th');
-            priceCell.textContent = price;
+            priceCell.textContent = "￥"+price;
 
             var countCell = document.createElement('th');
             var input = document.createElement('input');
@@ -231,7 +231,7 @@
             // 将行附加到tbody
             cartTableBody.append(row);
             const all = $("#allPrice");
-            all.val(allPrice);
+            all.val("￥"+allPrice);
             all.text(allPrice);
             const score =$("#score");
             score.text(allPrice);
@@ -240,27 +240,52 @@
 
 
     $("#submitOrder").click(function(){
-        $.ajax({
-            url: "${pageContext.request.contextPath}/buyRecord/create.do?orders="+orderIds,
-            type: "GET",
-            success: function(response) {
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/order/buy.do?orderId="+orderIds,
-                    type: "GET",
-                    success: function (response){
-                        alert("订单提交成功！");
-                        location.reload();
-                    }
-                });
-                // 这里你可以处理服务器返回的response
-                console.log(response);
-            },
-            error: function(error) {
-                // 这里你可以处理请求失败的情况
-                console.log(error);
-            }
-        });
+        if(orderIds!==""&&orderIds!=null){
+            $.ajax({
+                url: "${pageContext.request.contextPath}/buyRecord/create.do?orders="+orderIds,
+                type: "GET",
+                success: function(response) {
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/order/buy.do?orderId="+orderIds,
+                        type: "GET",
+                        success: function (response){
+                            alert("订单提交成功！");
+                            location.reload();
+                        }
+                    });
+                    // 这里你可以处理服务器返回的response
+                    console.log(response);
+                },
+                error: function(error) {
+                    // 这里你可以处理请求失败的情况
+                    console.log(error);
+                }
+            });
+        }else{
+            alert("购物车中没有商品！");
+        }
+
     });
+
+    $("#clear").click(function(){
+        if(orderIds!==""&&orderIds!=null){
+            $.ajax({
+                url: "${pageContext.request.contextPath}/order/deleteOrder.do?orderId="+orderIds,
+                type: "GET",
+                success: function(response) {
+                    location.reload();
+                    alert("清空成功！");
+                    location.reload();
+                },
+                error: function(error) {
+                    // 这里你可以处理请求失败的情况
+                    console.log(error);
+                }
+            });
+        }else{
+            alert("购物车中没有商品！");
+        }
+    })
 
 
 

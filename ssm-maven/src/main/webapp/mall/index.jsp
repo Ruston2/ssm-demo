@@ -166,7 +166,7 @@
 
     </div>
     <div style="float: right">
-        <a href="" style="color: #00a0e9;  text-decoration: underline;margin-right: 10px">查看更多>></a>
+        <a href="${pageContext.request.contextPath}/mall/products.jsp" style="color: #00a0e9;  text-decoration: underline;margin-right: 10px">查看更多>></a>
     </div>
 
 <%--    <div class="container-fluid">--%>
@@ -289,7 +289,7 @@
             success: function(data) {
                 JSON.parse(data).rows.forEach(function(item) {
                     var product = '<div class="product" style="display: inline-block; width: 20%; text-align: center;" >';
-                    product += '<a href=""> <img src="' +contextPath+'/'+ item.pimage + '" width="200" height="200" style="display: inline-block;border: 1px solid lightgray;" /></a>';                    product += '<p><a href="product_info.html" style="color:#666">'+ item.pname +'</a></p>';
+                    product += '<a href="' +contextPath+'/product/clickItemById.do?pid='+ item.pid+'"> <img src="' +contextPath+'/'+ item.pimage + '" width="200" height="200" style="display: inline-block;border: 1px solid lightgray;" /></a>';                    product += '<p><a href="product_info.html" style="color:#666">'+ item.pname +'</a></p>';
                     product += '<p><font color="#E4393C" style="font-size:16px">&yen;' +
                         (item.shopPrice ? item.shopPrice : '敬请期待') +
                         '</font></p>';

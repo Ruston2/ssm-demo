@@ -90,7 +90,7 @@ public class OrderController {
     public String deleteOrder(String orderId,HttpServletResponse response) throws Exception {
         if(orderId.split(",").length>1){
             List<String> list = Arrays.stream(orderId.split(",")).collect(Collectors.toList());
-            for (int i = 0; i < list.size() - 1; i++) {
+            for (int i = 0; i < list.size(); i++) {
                 orderService.deleteOrderById(list.get(i));
             }
         }else{
