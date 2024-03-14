@@ -116,6 +116,18 @@ public class ProductController {
         return "redirect:/mall/product_info.jsp";
     }
 
+    @RequestMapping("/clickSubmit")
+    public String clickSubmit(String pname,HttpSession session){
+        session.setAttribute("itemName",pname);
+        return "redirect:/mall/products.jsp";
+    }
+
+    @RequestMapping("/clickAll")
+    public String clickAll(HttpSession session){
+        session.setAttribute("itemName","");
+        return "redirect:/mall/products.jsp";
+    }
+
 
 
 

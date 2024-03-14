@@ -1,4 +1,4 @@
-package com.ssm.maven.core.entity;
+package com.ssm.maven.core.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,15 +7,14 @@ import lombok.ToString;
 
 /**
  * @Author cccc
- * @Date 2024/03/11 15:16
+ * @Date 2024/03/12 17:06
  **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BuyRecord {
-    private int id;
-    private String orders;
-    private String createTime;
-    private int uid;
+public class CommentsShowDto {
+    private String name;
+    private String message;
+    private String time;
 }

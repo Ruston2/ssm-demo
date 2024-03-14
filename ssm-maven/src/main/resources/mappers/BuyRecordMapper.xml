@@ -9,8 +9,11 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
     <insert id="createBuyRecord" parameterType="BuyRecord">
-        insert into buy_record(orders) values(#{orders});
+        insert into buy_record(orders,uid) values(#{orders},#{uid});
     </insert>
+    <delete id="deleteById" parameterType="int">
+        delete from buy_record where id=#{id};
+    </delete>
 
 
 </mapper>

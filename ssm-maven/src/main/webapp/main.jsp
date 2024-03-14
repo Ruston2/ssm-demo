@@ -115,13 +115,29 @@
                     data-options="plain:true,iconCls:'icon-shuben'"
                     style="width: 150px;">全部分类</a>
         </div>
-        <div title="测试" data-options="iconCls:'icon-fenlei'"
+        <div title="订单管理" data-options="iconCls:'icon-fenlei'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 测试','test.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部订单','orderManage.jsp','icon-shuben')"
                     class="easyui-linkbutton"
                     data-options="plain:true,iconCls:'icon-shuben'"
-                    style="width: 150px;">测试页面</a>
+                    style="width: 150px;">全部订单</a>
+        </div>
+        <div title="商城用户管理" data-options="iconCls:'icon-fenlei'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 全部用户','consumerManager.jsp','icon-shuben')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-shuben'"
+                    style="width: 150px;">全部用户</a>
+        </div>
+        <div title="数据统计" data-options="iconCls:'icon-fenlei'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 数据统计','test.jsp','icon-shuben')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-shuben'"
+                    style="width: 150px;">统计页面</a>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">

@@ -41,7 +41,7 @@
             position:relative;
         }
         .test1{
-            width: 7%;
+            width: 10%;
         }
     </style>
 </head>
@@ -61,7 +61,8 @@
             <ol class="list-inline">
 <%--                <li><a href="http://localhost:8081/Shop/login.jsp">登录</a></li>--%>
 <%--                <li><a href="http://localhost:8081/Shop/register.jsp">注册</a></li>--%>
-                <li><a href="${pageContext.request.contextPath}/mall/cart.jsp" style="font-size: 18px">购物车</a></li>
+                <li><a href="${pageContext.request.contextPath}/mall/cart.jsp" style="font-size: 16px">购物车</a></li>
+                <li><a href="${pageContext.request.contextPath}/mallUser/loginOut.do" id="quit" style="font-size: 16px">退出登录</a></li>
             </ol>
         </div>
     </div>
@@ -80,7 +81,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">首页</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/mall/index.jsp">首页</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -166,7 +167,7 @@
 
     </div>
     <div style="float: right">
-        <a href="${pageContext.request.contextPath}/mall/products.jsp" style="color: #00a0e9;  text-decoration: underline;margin-right: 10px">查看更多>></a>
+        <a href="${pageContext.request.contextPath}/product/clickAll.do" style="color: #00a0e9;  text-decoration: underline;margin-right: 10px">查看更多>></a>
     </div>
 
 <%--    <div class="container-fluid">--%>
@@ -301,6 +302,16 @@
     });
 
 
+    $("#quit").click(function (){
+        axios({
+            method:"get",
+            url:"${pageContext.request.contextPath}/mallUser/loginOut.do"
+        }).then(function(resp) {
+            document.cookie = "auto" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = "name" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        });
+    })
+
 
     $("#search").keyup(function(){
         console.log(this.value);
@@ -347,7 +358,7 @@
         console.log(1);
         var text=$("#search").val();
         console.log(text);
-        location.href="/Shop/web/findPage?pname="+text+"&page=1";
+        location.href="${pageContext.request.contextPath}/product/clickSubmit.do?pname="+text;
     })
 
 

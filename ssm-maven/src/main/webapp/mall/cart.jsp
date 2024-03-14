@@ -205,11 +205,12 @@
             var input = document.createElement('input');
             input.textContent=count;
             input.value=count;
+            input.disabled=true;
             countCell.appendChild(input);
             // countCell.textContent = count;
 
             var totalCell = document.createElement('th');
-            totalCell.textContent = total;
+            totalCell.textContent ="￥"+total;
 
             var optionCell = document.createElement('th');
             var a = document.createElement('a');
@@ -232,7 +233,7 @@
             cartTableBody.append(row);
             const all = $("#allPrice");
             all.val("￥"+allPrice);
-            all.text(allPrice);
+            all.text("￥"+allPrice);
             const score =$("#score");
             score.text(allPrice);
         });

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.CommentsShowDao">
+    <resultMap type="CommentsShowDto" id="CommentShowResult">
+        <result property="name" column="username"/>
+        <result property="message" column="comment"/>
+        <result property="time" column="create_time"/>
+    </resultMap>
+    <select id="getCommentsShow" resultMap="CommentShowResult" parameterType="string">
+        select c1.`comment`,c1.create_time,c2.username from
+            `comment` c1,consumer c2 where c1.uid=c2.id and c1.pid=#{_parmeter}
+            ORDER BY c1.create_time DESC
+        ;
+    </select>
+
+
+</mapper>

@@ -12,6 +12,14 @@
     <insert id="insertComment" parameterType="Comment">
         insert into comment(pid,comment,uid) values(#{pid},#{comment},#{uid});
     </insert>
+    <select id="getComments" resultType="com.ssm.maven.core.entity.Comment" parameterType="map">
+        select * from comment
+        <where>
+            <if test="pid!='' and pid!=null">
+                pid = #{pid}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

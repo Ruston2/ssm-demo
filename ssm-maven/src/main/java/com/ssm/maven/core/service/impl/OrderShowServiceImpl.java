@@ -23,4 +23,9 @@ public class OrderShowServiceImpl implements OrderShowService {
     public List<OrderShowDto> listOrders(HashMap<String, Object> map) {
         return orderShowDao.listOrders(map);
     }
+
+    @Override
+    public List<OrderShowDto> listOrder(HashMap<String, Object> map) {
+        return orderShowDao.listOrder(map);
+    }
 }

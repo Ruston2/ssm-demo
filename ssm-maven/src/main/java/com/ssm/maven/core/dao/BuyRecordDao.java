@@ -8,4 +8,6 @@ import com.ssm.maven.core.entity.BuyRecord;
  **/
 public interface BuyRecordDao {
     int createBuyRecord(BuyRecord buyRecord);
+
+    int deleteById(int id);
 }

@@ -33,11 +33,39 @@
             <if test="pid!=null and pid !='' ">
                 and pid = #{pid}
             </if>
+            <if test="orders !=null and orders!='' ">
+                and order_id = #{orders}
+            </if>
             ORDER BY order_id desc
             <if test="start!=null and size!=null">
                 limit #{start},#{size}
             </if>
         </where>
+    </select>
+
+    <select id="listOrder" resultMap="OrderResult" parameterType="map">
+        select order_id,uid,pid,count,totle_price from `order`
+        <where>
+            <if test="uid!=null and uid !='' ">
+                and uid = #{uid}
+            </if>
+            <if test="pid!=null and pid !='' ">
+                and pid = #{pid}
+            </if>
+            <if test="orders !=null and orders!='' ">
+                and order_id = #{orders}
+            </if>
+            ORDER BY order_id desc
+            <if test="start!=null and size!=null">
+                limit #{start},#{size}
+            </if>
+        </where>
+    </select>
+    <select id="selectByOrderIds" resultMap="OrderResult" parameterType="list">
+        select * from `order` where order_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
 

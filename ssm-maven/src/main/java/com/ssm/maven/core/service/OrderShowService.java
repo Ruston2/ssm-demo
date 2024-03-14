@@ -12,4 +12,6 @@ import java.util.List;
  **/
 public interface OrderShowService {
     List<OrderShowDto> listOrders(HashMap<String,Object> map);
+
+    List<OrderShowDto> listOrder(HashMap<String, Object> map);
 }

@@ -6,6 +6,7 @@ import com.ssm.maven.core.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,5 +42,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int buyProduct(String id) {
         return orderDao.buyProduct(id);
+    }
+
+    @Override
+    public List<Order> listOrder(HashMap<String, Object> map) {
+        return orderDao.listOrder(map);
+    }
+
+    @Override
+    public List<Order> selectByOrderIds(List<String> orderIds) {
+        return orderDao.selectByOrderIds(orderIds);
     }
 }

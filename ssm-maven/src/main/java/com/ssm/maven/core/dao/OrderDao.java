@@ -2,6 +2,7 @@ package com.ssm.maven.core.dao;
 
 import com.ssm.maven.core.entity.Order;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +21,8 @@ public interface OrderDao {
     int deleteOrderById(String orderId);
 
     int buyProduct(String id);
+
+    List<Order> listOrder(HashMap<String, Object> map);
+
+    List<Order> selectByOrderIds(List<String> orderIds);
 }

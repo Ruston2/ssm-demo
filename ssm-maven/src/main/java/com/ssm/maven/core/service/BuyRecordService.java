@@ -8,4 +8,6 @@ import com.ssm.maven.core.entity.BuyRecord;
  **/
 public interface BuyRecordService {
     int createBuyRecord(BuyRecord buyRecord);
+
+    int deleteById(int id);
 }

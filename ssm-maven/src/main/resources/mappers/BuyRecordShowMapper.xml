@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.BuyRecordShowDao">
+    <resultMap type="BuyRecordShowDto" id="BuyRecordShowResult">
+        <result property="id" column="id"/>
+        <result property="orders" column="orders"/>
+        <result property="username" column="username"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <select id="findBuyRecords" resultMap="BuyRecordShowResult" parameterType="map">
+        select b.id,b.orders,c.username,b.create_time from  buy_record b ,consumer c
+        <where>
+            b.uid = c.id
+            <if test="id!=null and id !='' ">
+                and b.id = #{id}
+            </if>
+        </where>
+    </select>
+    <select id="findTotal" resultType="java.lang.Integer" parameterType="map">
+        select count(*) from buy_record b ,consumer c
+        <where>
+            b.uid = c.id
+            <if test="id!=null and id !='' ">
+                and b.id = #{id}
+            </if>
+        </where>
+    </select>
+    <!--    <insert id="insertComment" parameterType="Comment">-->
+<!--        insert into comment(pid,comment,uid) values(#{pid},#{comment},#{uid});-->
+<!--    </insert>-->
+<!--    <select id="getComments" resultType="com.ssm.maven.core.entity.Comment" parameterType="map">-->
+<!--        select * from comment-->
+<!--        <where>-->
+<!--            <if test="pid!='' and pid!=null">-->
+<!--                pid = #{pid}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+
+</mapper>

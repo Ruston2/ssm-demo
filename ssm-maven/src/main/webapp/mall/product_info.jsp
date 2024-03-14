@@ -66,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">首页</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/mall/index.jsp">首页</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -107,7 +107,7 @@
             <div class="col-md-6">
                 <div><strong>${p.pname }</strong></div>
                 <div style="border-bottom: 1px dotted #dddddd;width:350px;margin:10px 0 10px 0;">
-                    <div>编号：751</div>
+                    <div>编号：${p.pid}</div>
                 </div>
                 <div style="margin:10px 0 10px 0;">成信商城价: <strong style="color:#ef0101;">${p.shopPrice }</strong> 参 考 价： <del>${p.marketPrice }</del>
                 </div>
@@ -164,7 +164,7 @@
 
             <div style="background-color:#d3d3d3;width:900px;">
                 <table class="table table-bordered">
-                    <tbody>
+                    <tbody id="commentSection">
                     <tr class="active">
                         <th><strong>商品评论</strong></th>
                     </tr>
@@ -231,16 +231,55 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
-    $("#comment").click(function(){
-        var t=$("#message-text").val();
-        console.log(t);
-        $("#close1").trigger('click');
-        $.ajax({
-            type:"get",
-            url:"/Shop/web/getComment?text"+t,
-        })
+    // $("#comment").click(function(){
+    //     var t=$("#message-text").val();
+    //     console.log(t);
+    //     $("#close1").trigger('click');
+    //     $.ajax({
+    //         type:"get",
+    //         url:"/Shop/web/getComment?text"+t,
+    //     })
+    //
+    // })
 
-    })
+
+
+    $(document).ready(function(){
+        $.ajax({
+            url: '${pageContext.request.contextPath}/comment/getCommentsShow.do?pid='+${p.pid},
+            type: 'GET',
+            dataType: 'json',
+            success: function(result){
+                var data = result.data;
+                for(var i=0; i<data.length; i++){
+                    var card = $(`
+                    <tr>
+                        <th>
+                            <div class="card mb-3">
+                                <div class="card-header" style="font-size: 14px"></div>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 16px"></h5>
+                                    <p class="card-text"></p>
+                                </div>
+                                <div class="card-footer text-muted" style="font-size: 10px"></div>
+                            </div>
+                        </th>
+                    </tr>
+                `);
+                    card.find('.card-header').text(data[i].name+":");
+                    card.find('.card-title').text(data[i].message);
+                    card.find('.card-footer').text(data[i].time);
+                    $('#commentSection').append(card);
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    });
+
+
+
 
 
     $("#git").click(function(){
@@ -316,7 +355,7 @@
                 url: "${pageContext.request.contextPath}/comment/createComment.do",
                 data: {
                     pid: ${p.pid},
-                    comment: $("#message-text").textContent
+                    comment: $("#message-text").val()
                 },
                 success: function(response) {
                     // This is the callback function that is called if the request succeeds
@@ -329,6 +368,10 @@
                     }else {
                         alert("评论成功! ");
                     }
+                    $('#exampleModal').hide();
+
+                    // 刷新页面
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     // This callback handles any errors

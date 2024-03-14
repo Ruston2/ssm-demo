@@ -11,4 +11,6 @@ import java.util.List;
  **/
 public interface OrderShowDao {
     List<OrderShowDto> listOrders(HashMap<String,Object> map);
+
+    List<OrderShowDto> listOrder(HashMap<String, Object> map);
 }

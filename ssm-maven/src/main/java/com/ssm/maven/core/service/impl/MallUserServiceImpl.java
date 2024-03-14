@@ -6,6 +6,8 @@ import com.ssm.maven.core.service.MallUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -30,5 +32,25 @@ public class MallUserServiceImpl implements MallUserService {
     @Override
     public Consumer findByUAndP(String username, String password) {
         return mallUserDao.findUserBUAP(username,password);
+    }
+
+    @Override
+    public List<Consumer> listUser(Map<String, Object> map) {
+        return mallUserDao.listConsumer(map);
+    }
+
+    @Override
+    public Long getTotalConsumer(Map<String, Object> map) {
+        return mallUserDao.getTotalConsumer(map);
+    }
+
+    @Override
+    public int deleteById(int id) {
+        return mallUserDao.deleteById(id);
+    }
+
+    @Override
+    public int updateConsumer(Consumer consumer) {
+        return mallUserDao.updateConsumer(consumer);
     }
 }

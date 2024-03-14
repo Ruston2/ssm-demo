@@ -115,13 +115,17 @@ font {
 <form class="form-horizontal" action="${pageContext.request.contextPath}/mallUser/login.do">
   <%
 	  String username="";
+      boolean auto=false;
 	  Cookie[] cs=request.getCookies();
 	  if(cs!=null){
   		for(Cookie c:cs){
   	  		if(c.getName().equals("name")){
   	  			username=c.getValue();
 //  	  			System.out.println(1);
-  	  		}
+  	  		}if(c.getName().equals("auto")){
+                    username=c.getValue().split("@")[0];
+                    auto=true;
+            }
   	  	}
   	}
   %>
@@ -196,7 +200,15 @@ font {
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-	$("#changeImg").click(function(){
+    window.onload = function() {
+        let condition = <%=auto%> // 你的条件
+        if(condition){
+            window.location.href = "${pageContext.request.contextPath}/mall/index.jsp";
+        }
+    };
+
+
+    $("#changeImg").click(function(){
 		console.log(12),
 		$(this).attr("src","${pageContext.request.contextPath}/mallUser/checkCode.do?"+new Date().getMilliseconds());
 	})

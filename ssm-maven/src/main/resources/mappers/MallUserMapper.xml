@@ -14,11 +14,41 @@
     <insert id="insertConsumer" parameterType="Consumer">
         insert into consumer(id,username,password,email,name) values (#{id},#{username},#{password},#{email},#{name});
     </insert>
+    <update id="updateConsumer" parameterType="Consumer">
+        update consumer set username=#{username},password=#{password},email=#{email},name=#{name} where id = #{id};
+    </update>
+    <delete id="deleteById" parameterType="int">
+        delete from consumer where id=#{id};
+    </delete>
     <select id="findUserByName" resultType="com.ssm.maven.core.entity.Consumer" parameterType="string">
         select * from consumer where username=#{_parameter} and is_delete=0;
     </select>
     <select id="findUserBUAP" resultType="com.ssm.maven.core.entity.Consumer" parameterType="string">
         select * from consumer where username=#{0} and password=#{1};
+    </select>
+    <select id="listConsumer" resultMap="ConsumerResult" parameterType="map">
+        select id,username,password,email,name,is_delete from consumer
+        <where>
+            is_delete = 0
+            <if test="username!=null and username!='' ">
+                and username like #{username}
+            </if>
+        </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getTotalConsumer" resultType="java.lang.Long">
+        select count(*) from consumer
+        <where>
+            is_delete = 0
+            <if test="username!=null and username!='' ">
+                and username like #{username}
+            </if>
+        </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
     </select>
 
 

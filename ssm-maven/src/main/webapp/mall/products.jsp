@@ -73,7 +73,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">首页</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/mall/index.jsp">首页</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -150,6 +150,7 @@
         var TOTAL_PAGE = 0; // 总页数
         var LAST_QUERY = ''; // 上一次的查询
 
+        var itemName = "${itemName}";
         // 获取并显示商品
         function getProducts(query) {
             // 模拟一个GET请求到后端API
@@ -167,6 +168,8 @@
                     var row = document.createElement('div');
                     row.className='col-sm-6 col-md-4';
                     row.style.width="20%";
+                    row.style.height="280px";
+                    row.style.float="left";
                     // row.style.display="inline-block";
                     row.style.textAlign="center";
                     var di=document.createElement('div');
@@ -218,7 +221,13 @@
             });
         }
 
-        getProducts(''); // 默认加载所有商品
+        if(itemName!==''&&itemName!=null){
+            getProducts(itemName);
+            $('#search-box').val(itemName);
+            LAST_QUERY=itemName;
+        }else {
+            getProducts(''); // 默认加载所有商品
+        }
 
         // 输入框监听事件
         $('#search-box').on('input', function() {

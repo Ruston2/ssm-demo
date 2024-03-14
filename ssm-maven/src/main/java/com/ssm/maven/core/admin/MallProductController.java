@@ -42,4 +42,6 @@ public class MallProductController {
         ResponseUtil.write(response, result);
         return null;
     }
+
+
 }

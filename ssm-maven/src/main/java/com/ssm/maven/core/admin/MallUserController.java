@@ -79,7 +79,8 @@ public class MallUserController {
             if(user!=null){
                 if("on".equals(auto)){
                     Cookie cookie=new Cookie("auto", user.getUsername()+"@"+user.getPassword());
-                    cookie.setMaxAge(60);
+                    cookie.setMaxAge(600);
+                    cookie.setPath("/");
                     response.addCookie(cookie);
                 }
                 else if("on".equals(rember)){
@@ -98,5 +99,25 @@ public class MallUserController {
             request.setAttribute("login_err","验证码错误");
         }
         return "forward:/mall/login.jsp";
+    }
+
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws InterruptedException {
+        session.invalidate();
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie: cookies){
+                //找到我们想要删除的cookie
+                if("auto".equals(cookie.getName()) || "name".equals(cookie.getName())) {
+                    //将其生命周期设置为0
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    //然后添加到response中覆盖原来的cookie
+                    response.addCookie(cookie);
+                    Thread.sleep(100);
+                }
+            }
+        }
+        return "redirect:/mall/login.jsp";
     }
 }

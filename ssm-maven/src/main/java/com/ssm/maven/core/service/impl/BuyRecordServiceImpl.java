@@ -20,4 +20,9 @@ public class BuyRecordServiceImpl implements BuyRecordService {
     public int createBuyRecord(BuyRecord buyRecord) {
         return buyRecordDao.createBuyRecord(buyRecord);
     }
+
+    @Override
+    public int deleteById(int id) {
+        return buyRecordDao.deleteById(id);
+    }
 }
