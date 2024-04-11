@@ -12,6 +12,12 @@
     <insert id="insertComment" parameterType="Comment">
         insert into comment(pid,comment,uid) values(#{pid},#{comment},#{uid});
     </insert>
+    <update id="modifyComment" parameterType="Comment">
+        update comment set comment = #{comment} where id = #{id};
+    </update>
+    <delete id="deleteComment" parameterType="string">
+        delete from comment where id = #{_parmeter};
+    </delete>
     <select id="getComments" resultType="com.ssm.maven.core.entity.Comment" parameterType="map">
         select * from comment
         <where>

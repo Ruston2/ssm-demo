@@ -25,4 +25,6 @@ public interface OrderDao {
     List<Order> listOrder(HashMap<String, Object> map);
 
     List<Order> selectByOrderIds(List<String> orderIds);
+
+    Double selectTotalByOrderIds(List<String> list);
 }

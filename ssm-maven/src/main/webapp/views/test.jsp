@@ -21,18 +21,22 @@
             src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<div id="main" style="width: 600px;height:400px;"></div>
+<div id="main" style="width: 750px;height:400px;"></div>
+<div id="main2" style="width: 1000px;height:400px;"></div>
 <script type="text/javascript">
     var num = [];
     var cname = [];
+    var soldNum = [];
 
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
+    var myChart2 = echarts.init(document.getElementById('main2'));
 
     $(document).ready(function() {
         $.get("${pageContext.request.contextPath}/statistics/getProductCategory.do", function(data) {
             num = JSON.parse(data).num;
             cname = JSON.parse(data).cname;
+            soldNum = JSON.parse(data).soldNum;
 
             // 指定图表的配置项和数据
             var option = {
@@ -56,7 +60,7 @@
                     {
                         name: '销量',
                         type: 'bar',
-                        data: [131, 120, 363, 210, 110, 70]
+                        data: soldNum
                     }
                 ]
             };
@@ -64,6 +68,33 @@
             // 使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
         });
+
+        $.get("${pageContext.request.contextPath}/statistics/recentSalesRevenue.do",function (data) {
+            var time = JSON.parse(data).time;
+            var sum = JSON.parse(data).sum;
+
+
+            var option2 = {
+                title: {
+                    text: '近一周商城销售额'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: time
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        data: sum,
+                        type: 'line'
+                    }
+                ]
+            };
+
+            myChart2.setOption(option2);
+        })
     });
 
 </script>

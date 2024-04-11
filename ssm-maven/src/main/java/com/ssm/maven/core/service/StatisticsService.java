@@ -1,6 +1,8 @@
 package com.ssm.maven.core.service;
 
+import com.ssm.maven.core.entity.dto.CategorySold;
 import com.ssm.maven.core.entity.dto.ProductCategoryDto;
+import com.ssm.maven.core.entity.dto.RecentOrder;
 
 import java.util.List;
 
@@ -10,4 +12,8 @@ import java.util.List;
  **/
 public interface StatisticsService {
     public List<ProductCategoryDto> getProductCategory();
+
+    List<CategorySold> getCategorySold();
+
+    List<RecentOrder> getSalesRevenue();
 }

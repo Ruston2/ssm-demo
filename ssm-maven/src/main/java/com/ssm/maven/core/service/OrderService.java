@@ -25,4 +25,6 @@ public interface OrderService {
     List<Order> listOrder(HashMap<String, Object> map);
 
     List<Order> selectByOrderIds(List<String> orderIds);
+
+    Double selectTotalOrderIds(List<String> list);
 }

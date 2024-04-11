@@ -53,4 +53,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> selectByOrderIds(List<String> orderIds) {
         return orderDao.selectByOrderIds(orderIds);
     }
+
+    @Override
+    public Double selectTotalOrderIds(List<String> list) {
+        return orderDao.selectTotalByOrderIds(list);
+    }
 }

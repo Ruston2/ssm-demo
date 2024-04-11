@@ -23,4 +23,10 @@ public interface ProductDao {
     List<Category> getAllCategories();
 
     void deleteProduct(int pid);
+
+    int insertProduct(Product product);
+
+    int updateProduct(Product product);
+
+    int updateProduct1(Product product);
 }

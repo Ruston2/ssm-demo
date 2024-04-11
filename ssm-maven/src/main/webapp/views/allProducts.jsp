@@ -58,7 +58,7 @@
         <th field="pdesc" width="400" align="center">描述</th>
         <th field="shopPrice" width="70" align="center" formatter="formatPrice">商城价</th>
         <th field="cid" width="100" align="center" formatter="formatStatus">分类</th>
-        <th field="store" width="50" align="center">库存</th>
+<%--        <th field="store" width="50" align="center">库存</th>--%>
     </tr>
     </thead>
 </table>
@@ -81,14 +81,21 @@
         <table cellspacing="8px">
             <tr>
                 <td width="58px">商品名：</td>
-                <td><input type="text" id="productname" name="pname"
+                <td><input type="text" id="productName" name="pname"
                            class="easyui-validatebox" required="true"/>&nbsp;<font
                         color="red">*</font>
                 </td>
             </tr>
             <tr>
                 <td width="58px">价格: </td>
-                <td><input type="text" id="price" name="shopPrice"
+                <td><input type="text" id="shopPrice" name="shopPrice"
+                           class="easyui-validatebox" required="true"/>&nbsp;<font
+                        color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td>市场价: </td>
+                <td><input type="text" id="marketPrice" name="marketPrice"
                            class="easyui-validatebox" required="true"/>&nbsp;<font
                         color="red">*</font>
                 </td>
@@ -96,29 +103,22 @@
             <tr>
                 <td>分类: </td>
                 <td>
-                    <select id="category" class="easyui-combobox" name="category" style="width:200px;">
+                    <select id="cid" class="easyui-combobox" name="cid" style="width:200px;">
                         <option value="">请选择...</option>
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td>库存: </td>
-                <td><input type="text" id="storage" name="store"
-                           class="easyui-validatebox" required="true"/>&nbsp;<font
-                        color="red">*</font>
-                </td>
-            </tr>
+
             <tr>
                 <td>图片：</td>
                 <td>
-                    <input style="width: 180px;" id="assetphotourl" type="file" name="assetphotourl"/>
+                    <input style="width: 180px;" id="pimage" type="file" name="image"/>
 <%--                    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="AssetPhotosAdd($('#assetnum1').val())">添加</a>--%>
                 </td>
             </tr>
             <tr>
                 <td>描述: </td>
-                <td><input type="text" id="desc" class="easyui-validatebox"/>
-                </td>
+                <td><input type="text" id="desc" name="pdesc" class="easyui-validatebox"/>
                 </td>
             </tr>
         </table>
@@ -146,15 +146,56 @@
     var categoryData = [];
 
     //绑定下拉框数据
+    <%--function bindBox(){--%>
+    <%--    $.get("${pageContext.request.contextPath}/product/getAllCategories.do", function(data) {--%>
+    <%--        console.log(data);--%>
+    <%--        var par = JSON.parse(data);--%>
+    <%--        console.log(par);--%>
+    <%--        var formattedData = par.map(function(item, index) {--%>
+    <%--            return {--%>
+    <%--                id: index + 1,  // 这里简单地使用数组索引作为id，你可以根据实际情况修改--%>
+    <%--                text: item--%>
+    <%--            };--%>
+    <%--        });--%>
+
+    <%--        $("#category").combobox("loadData", formattedData);--%>
+    <%--        $('#category').combobox({--%>
+    <%--            valueField: 'id',--%>
+    <%--            textField: 'text',--%>
+    <%--            onSelect: function(rec){--%>
+    <%--                var value = rec.text;--%>
+    <%--                console.log("用户选择了: " + value);--%>
+    <%--                // 在这里，你可以自由处理用户选择的值，例如将其显示在其他地方。--%>
+    <%--            }--%>
+    <%--        });--%>
+
+    <%--    });--%>
+
+    <%--}--%>
+
     function bindBox(){
-        var parse = JSON.parse(categoryData);
-        for (var i = 0; i < parse.length; i++) {
-            $('#category').append($('<option>', {
-                value: parse[i],
-                text: parse[i]
-            }));
-        }
-        // $('#category').combobox('loadData', parse);
+        $('#cid').combobox({
+            valueField: 'id',
+            textField: 'text',
+            onSelect: function(rec){
+                var value = rec.text;
+                console.log("用户选择了: " + value);
+                // 在这里，你可以自由处理用户选择的值，例如将其显示在其他地方。
+            }
+        });
+
+        $.get("${pageContext.request.contextPath}/product/getAllCategories.do", function(data) {
+            console.log(data);
+            var par = JSON.parse(data);
+            console.log(par);
+            var formattedData = par.map(function(item, index) {
+                return {
+                    id: item.cid,  // 这里简单地使用数组索引作为id，你可以根据实际情况修改
+                    text: item.cname
+                };
+            });
+            $("#cid").combobox("loadData", formattedData);
+        });
     }
 
 
@@ -172,10 +213,6 @@
     }
 
 
-    function openbookInfoPage(id) {
-        window.parent.openTab('书籍摆放信息', 'storeInfo.jsp?id=' + id,
-            'icon-shujias');
-    }
 
     function formatProPic(val, row) {
         return "<img width=80 height=110 src='../" + val + "'>";
@@ -202,13 +239,22 @@
     <%--    return "<div>Loading...</div>";--%>
     <%--}--%>
     function formatStatus(val, row) {
-        if(row.cid !== undefined && row.cid!==''){
-            let cate = JSON.parse(categoryData)[row.cid-1];
-            return "<div>" + cate + "</div>";
+        var da = JSON.parse(categoryData);
+        for(let i=0;i<da.length;i++){
+            if(row.cid===da[i].cid){
+                return "<div>" + da[i].cname + "</div>";
+            }
         }
-        else {
-            return "<div>暂未分类</div>";
-        }
+        return "<div>暂未分类</div>";
+
+
+        // if(row.cid !== undefined && row.cid!==''){
+        //     let cate = JSON.parse(categoryData)[row.cid-1];
+        //     return "<div>" + cate + "</div>";
+        // }
+        // else {
+        //     return "<div>暂未分类</div>";
+        // }
 
 
 
@@ -256,12 +302,8 @@
     }
 
     function openProductAddDialog() {
-        // var html = '<div id="myEditor" name="articleContent"></div>';
-        // $('#editor').append(html);
-        // ResetEditor(editor);
-        // var ue = UE.getEditor('myEditor');
-        // ue.setContent("");
         $("#dlg").dialog("open").dialog("setTitle", "添加文本信息");
+        <%--$('#category').combobox('reload', '${pageContext.request.contextPath}/product/getAllCategories.do');--%>
         bindBox();
         url = "${pageContext.request.contextPath}/product/save.do";
     }
@@ -275,34 +317,34 @@
         var row = selectedRows[0];
         $("#dlg").dialog("open").dialog("setTitle", "修改信息");
         $('#fm').form('load', row);
-        var html = '<div id="myEditor" name="articleContent"></div>';
-        $('#editor').append(html);
-        // ResetEditor(editor);
-        var ue = UE.getEditor('myEditor');
-        ue.setContent(row.articleContent);
-        url = "${pageContext.request.contextPath}/article/save.do?id="
-            + row.id;
+        url = "${pageContext.request.contextPath}/product/update.do?pid="
+            + row.pid;
     }
 
     function saveProduct() {
-        var files = document.getElementById("assetphotourl").files;
+        var files = document.getElementById("pimage").files;
         var length = files.length;
-        if(length==1){
+        if(length<=1){
             $("#fm").form("submit", {
                 url: url,
                 onSubmit: function () {
                     return $(this).form("validate");
                 },
                 success: function (result) {
-                    $.messager.alert("系统提示", "保存成功");
-                    $("#dlg").dialog("close");
-                    $("#dg").datagrid("reload");
-                    resetValue();
+                    if(JSON.parse(result).success){
+                        $.messager.alert("系统提示", "保存成功");
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                        resetValue();
+                    }else {
+                        $.messager.alert("系统提示", "数据填写错误，保存失败");
+                    }
+                },
+                error: function (result) {
+                    $.messager.alert("系统提示", "保存失败");
                 }
             });
-        }else if(length==0){
-            $.messager.alert("系统提示","图片不能为空！");
-        }else{
+        } else{
             $.messager.alert("只能上传一张图片");
         }
 
@@ -314,12 +356,12 @@
     }
 
     function resetValue() {
-        $("#productname").val("");
-        $("#price").val("");
-        $("#storage").val("");
+        $("#productName").val("");
+        $("#shopPrice").val("");
+        $("#marketPrice").val("");
         $("#desc").val("");
-        $("#assetphotourl").val("");
-        $("#category").val("");
+        $("#pimage").val("");
+        $("#cid").val("");
         // ResetEditor();
     }
 

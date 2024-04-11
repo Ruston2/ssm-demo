@@ -105,8 +105,9 @@
 
         <div class="container">
             <div class="row">
-                <div class="test" style="float: right;margin-right: 10px">
+                <div class="test" style="float: right;margin-right: 10px;display: flex !important;" >
                     <input type="text" class="form-control" id="search-box" placeholder="搜索商品" width="100px">
+                    <button id="search-button" style="width: 70px;height: 34px;margin-left: 5px">搜索</button>
                 </div>
             </div>
         </div>
@@ -230,14 +231,22 @@
         }
 
         // 输入框监听事件
-        $('#search-box').on('input', function() {
-            var query = $(this).val();
+        // $('#search-box').on('input', function() {
+        //     var query = $(this).val();
+        //     if(query !== LAST_QUERY) {
+        //         LAST_QUERY = query;
+        //         CURRENT_PAGE = 1; // 重置页码
+        //         getProducts(query);
+        //     }
+        // });
+        $('#search-button').on('click',function () {
+            var query = $('#search-box').val();
             if(query !== LAST_QUERY) {
                 LAST_QUERY = query;
                 CURRENT_PAGE = 1; // 重置页码
                 getProducts(query);
             }
-        });
+        })
 
         // 分页点击事件
         $(document).on('click', '.pagination li a', function(e){

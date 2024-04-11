@@ -1,7 +1,9 @@
 package com.ssm.maven.core.service.impl;
 
 import com.ssm.maven.core.dao.StatisticsDao;
+import com.ssm.maven.core.entity.dto.CategorySold;
 import com.ssm.maven.core.entity.dto.ProductCategoryDto;
+import com.ssm.maven.core.entity.dto.RecentOrder;
 import com.ssm.maven.core.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +23,15 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public List<ProductCategoryDto> getProductCategory() {
         return statisticsDao.getProductCategory();
+    }
+
+    @Override
+    public List<CategorySold> getCategorySold() {
+        return statisticsDao.getCategorySold();
+    }
+
+    @Override
+    public List<RecentOrder> getSalesRevenue() {
+        return statisticsDao.getSalesRevenue();
     }
 }

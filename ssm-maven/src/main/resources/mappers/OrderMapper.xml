@@ -67,6 +67,12 @@
             #{item}
         </foreach>
     </select>
+    <select id="selectTotalByOrderIds" resultType="java.lang.Double" parameterType="list">
+        select sum(totle_price) from `order` where order_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
 
 </mapper>

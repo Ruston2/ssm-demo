@@ -2,6 +2,7 @@ package com.ssm.maven.core.service.impl;
 
 import com.ssm.maven.core.dao.CommentDao;
 import com.ssm.maven.core.entity.Comment;
+import com.ssm.maven.core.entity.dto.CommentShowDto;
 import com.ssm.maven.core.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,15 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments(HashMap<String, Object> map) {
         return commentDao.getComments(map);
+    }
+
+    @Override
+    public int deleteComment(String id) {
+        return commentDao.deleteComment(id);
+    }
+
+    @Override
+    public int modifyComment(CommentShowDto comment) {
+        return commentDao.modifyComment(comment);
     }
 }

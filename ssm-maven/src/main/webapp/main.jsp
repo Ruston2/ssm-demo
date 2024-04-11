@@ -51,12 +51,12 @@
     </script>
     <jsp:include page="login_chk.jsp"></jsp:include>
 <body class="easyui-layout">
-<div region="north" style="height: 78px;background-color: #ffff">
+<div region="north" style="height: 33px;background-color: #ffff">
     <table width="100%">
         <tr>
             <td width="50%"></td>
             <td valign="bottom"
-                style="font-size: 20px;color:#8B8B8B;font-family: '楷体';"
+                style="font-size: 24px;color:#8B8B8B;font-family: '楷体';"
                 align="right" width="50%"><font size="3">&nbsp;&nbsp;<strong>当前管理员：</strong>${currentUser.userName
                     }</font>【管理员】
             </td>
@@ -74,15 +74,15 @@
 <div region="west" style="width: 200px;height:500px;" title="导航菜单"
      split="true">
     <div class="easyui-accordion">
-        <div title="文章管理"
-             data-options="selected:true,iconCls:'icon-wenzhangs'"
-             style="padding: 10px;height:10px;">
-            <a
-                    href="javascript:openTab(' 文章管理','articleManage.jsp','icon-wenzhang')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-wenzhang'"
-                    style="width: 150px;"> 文章管理</a>
-        </div>
+<%--        <div title="文章管理"--%>
+<%--             data-options="selected:true,iconCls:'icon-wenzhangs'"--%>
+<%--             style="padding: 10px;height:10px;">--%>
+<%--            <a--%>
+<%--                    href="javascript:openTab(' 文章管理','articleManage.jsp','icon-wenzhang')"--%>
+<%--                    class="easyui-linkbutton"--%>
+<%--                    data-options="plain:true,iconCls:'icon-wenzhang'"--%>
+<%--                    style="width: 150px;"> 文章管理</a>--%>
+<%--        </div>--%>
 <%--        <div title="图片管理" data-options="iconCls:'icon-shouye'"--%>
 <%--             style="padding:10px">--%>
 <%--            <a--%>
@@ -91,26 +91,26 @@
 <%--                    data-options="plain:true,iconCls:'icon-tupian'"--%>
 <%--                    style="width: 150px;"> 图片设置</a>--%>
 <%--        </div>--%>
-        <div title="书籍管理" data-options="iconCls:'icon-shuji'"
-                   style="padding:10px">
-        <a
-                href="javascript:openTab(' 全部书籍','allBooksManage.jsp','icon-shuben')"
-                class="easyui-linkbutton"
-                data-options="plain:true,iconCls:'icon-shuben'"
-                style="width: 150px;">全部书籍</a>
-        </div>
+<%--        <div title="书籍管理" data-options="iconCls:'icon-shuji'"--%>
+<%--                   style="padding:10px">--%>
+<%--        <a--%>
+<%--                href="javascript:openTab(' 全部书籍','allBooksManage.jsp','icon-shuben')"--%>
+<%--                class="easyui-linkbutton"--%>
+<%--                data-options="plain:true,iconCls:'icon-shuben'"--%>
+<%--                style="width: 150px;">全部书籍</a>--%>
+<%--        </div>--%>
         <div title="商品管理" data-options="iconCls:'icon-jcsjgl'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 全部商品','allProducts.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部商品','allProducts.jsp','icon-jcsjgl')"
                     class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
+                    data-options="plain:true,iconCls:'icon-jcsjgl'"
                     style="width: 150px;">全部商品</a>
         </div>
-        <div title="分类管理" data-options="iconCls:'icon-fenlei'"
+        <div title="分类管理" data-options="iconCls:'icon-shuben'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 全部分类','category.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部分类','category.jsp','.icon-shuben')"
                     class="easyui-linkbutton"
                     data-options="plain:true,iconCls:'icon-shuben'"
                     style="width: 150px;">全部分类</a>
@@ -118,25 +118,33 @@
         <div title="订单管理" data-options="iconCls:'icon-fenlei'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 全部订单','orderManage.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部订单','orderManage.jsp','.icon-fenlei')"
                     class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
+                    data-options="plain:true,iconCls:'icon-fenlei'"
                     style="width: 150px;">全部订单</a>
         </div>
-        <div title="商城用户管理" data-options="iconCls:'icon-fenlei'"
+        <div title="评论管理" data-options="iconCls:'icon-advice'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 全部用户','consumerManager.jsp','icon-shuben')"
+                    href="javascript:openTab(' 全部评论','commentManage.jsp','.icon-advice')"
                     class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
+                    data-options="plain:true,iconCls:'icon-advice'"
+                    style="width: 150px;">全部评论</a>
+        </div>
+        <div title="商城用户管理" data-options="iconCls:'icon-students'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 全部用户','consumerManager.jsp','.icon-students')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-students'"
                     style="width: 150px;">全部用户</a>
         </div>
-        <div title="数据统计" data-options="iconCls:'icon-fenlei'"
+        <div title="数据统计" data-options="iconCls:'icon-tan'"
              style="padding:10px">
             <a
-                    href="javascript:openTab(' 数据统计','test.jsp','icon-shuben')"
+                    href="javascript:openTab(' 数据统计','test.jsp','.icon-tan')"
                     class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-shuben'"
+                    data-options="plain:true,iconCls:'icon-tan'"
                     style="width: 150px;">统计页面</a>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"

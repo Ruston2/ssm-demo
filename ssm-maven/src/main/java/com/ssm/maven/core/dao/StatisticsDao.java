@@ -1,6 +1,8 @@
 package com.ssm.maven.core.dao;
 
+import com.ssm.maven.core.entity.dto.CategorySold;
 import com.ssm.maven.core.entity.dto.ProductCategoryDto;
+import com.ssm.maven.core.entity.dto.RecentOrder;
 
 import java.util.List;
 
@@ -12,4 +14,7 @@ public interface StatisticsDao {
 
     public List<ProductCategoryDto> getProductCategory();
 
+    List<CategorySold> getCategorySold();
+
+    List<RecentOrder> getSalesRevenue();
 }

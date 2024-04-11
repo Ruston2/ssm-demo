@@ -16,7 +16,15 @@
         <result property="cid" column="cid"/>
         <result property="store" column="store"/>
     </resultMap>
-    <insert id="insertBook"></insert>
+    <insert id="insertProduct" parameterType="Product">
+        insert into product(pname,market_price,shop_price,pimage,pdesc,cid,store) values (#{pname},#{marketPrice},#{shopPrice},#{pimage},#{pdesc},#{cid},10);
+    </insert>
+    <update id="updateProduct" parameterType="Product">
+        update product set pname=#{pname},market_price=#{marketPrice},shop_price=#{shopPrice},pimage=#{pimage},pdesc=#{pdesc},cid=#{cid} where pid=#{pid};
+    </update>
+    <update id="updateProduct1" parameterType="Product">
+        update product set pname=#{pname},market_price=#{marketPrice},shop_price=#{shopPrice},pdesc=#{pdesc},cid=#{cid} where pid=#{pid};
+    </update>
     <delete id="deleteProduct">
         delete from product where pid = #{pid};
     </delete>

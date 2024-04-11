@@ -10,6 +10,12 @@
     <select id="getProductCategory" resultType="com.ssm.maven.core.entity.dto.ProductCategoryDto">
         SELECT count(*) num,cname from category c,product p where c.cid=p.cid GROUP BY c.cid;
     </select>
+    <select id="getCategorySold" resultType="com.ssm.maven.core.entity.dto.CategorySold">
+        select c.cname,SUM(o.count) num from `order` o ,category c,product p where o.pid=p.pid and p.cid=c.cid and o.is_buy=1 GROUP BY c.cid;
+    </select>
+    <select id="getSalesRevenue" resultType="com.ssm.maven.core.entity.dto.RecentOrder">
+        select orders,date(create_time) createTime  from buy_record WHERE DATEDIFF(CURDATE(), DATE(create_time)) <![CDATA[<=]]> 7;
+    </select>
 
 
 </mapper>
