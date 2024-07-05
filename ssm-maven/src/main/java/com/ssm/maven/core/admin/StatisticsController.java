@@ -78,13 +78,11 @@ public class StatisticsController {
             cnames.add(s.getCname());
             nums.add(s.getNum());
         });
-
         JSONArray cname = JSONArray.fromObject(cnames);
         JSONArray num = JSONArray.fromObject(nums);
         result.put("cname", cname);
         result.put("num", num);
         ResponseUtil.write(response, result);
-//        System.out.println(productCategory);
         return null;
     }
 
@@ -114,7 +112,6 @@ public class StatisticsController {
                 revenue.put(s,0.0);
             }
         }
-
         TreeMap<String, Double> result = new TreeMap<>();
         for (int i = 7; i >=0; i--) {
             LocalDate date = endDate.minusDays(i);

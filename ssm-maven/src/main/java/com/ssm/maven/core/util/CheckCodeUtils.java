@@ -50,7 +50,6 @@ public class CheckCodeUtils {
         }
 
         public static String generateVerifyCode(int verifySize, String sources) {
-            // 閺堫亣顔曠�规艾鐫嶇粈鐑樼爱閻ㄥ嫬鐡ч惍渚婄礉鐠у绮拋銈咃拷鐓庛亣閸愭瑥鐡уВ锟�+閺佹澘鐡�
             if (sources == null || sources.length() == 0) {
                 sources = VERIFY_CODES;
             }
@@ -153,7 +152,6 @@ public class CheckCodeUtils {
             for (int i = 0; i < area; i++) {
                 int x = random.nextInt(w);
                 int y = random.nextInt(h);
-                // 閼惧嘲褰囬梾蹇旀簚妫版粏澹�
                 int rgb = getRandomIntColor();
                 image.setRGB(x, y, rgb);
             }
@@ -242,7 +240,7 @@ public class CheckCodeUtils {
 
         private static void shearY(Graphics g, int w1, int h1, Color color) {
 
-            int period = random.nextInt(40) + 10; // 50;
+            int period = random.nextInt(40) + 10;
 
             boolean borderGap = true;
             int frames = 20;

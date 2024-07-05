@@ -180,7 +180,6 @@
             onSelect: function(rec){
                 var value = rec.text;
                 console.log("用户选择了: " + value);
-                // 在这里，你可以自由处理用户选择的值，例如将其显示在其他地方。
             }
         });
 
@@ -190,7 +189,7 @@
             console.log(par);
             var formattedData = par.map(function(item, index) {
                 return {
-                    id: item.cid,  // 这里简单地使用数组索引作为id，你可以根据实际情况修改
+                    id: item.cid,
                     text: item.cname
                 };
             });
@@ -246,18 +245,6 @@
             }
         }
         return "<div>暂未分类</div>";
-
-
-        // if(row.cid !== undefined && row.cid!==''){
-        //     let cate = JSON.parse(categoryData)[row.cid-1];
-        //     return "<div>" + cate + "</div>";
-        // }
-        // else {
-        //     return "<div>暂未分类</div>";
-        // }
-
-
-
     }
     function formatPrice(val,row) {
         if(row.shopPrice === "" || row.shopPrice ==null){
@@ -298,12 +285,10 @@
                             }, "json");
                     }
                 });
-
     }
 
     function openProductAddDialog() {
         $("#dlg").dialog("open").dialog("setTitle", "添加文本信息");
-        <%--$('#category').combobox('reload', '${pageContext.request.contextPath}/product/getAllCategories.do');--%>
         bindBox();
         url = "${pageContext.request.contextPath}/product/save.do";
     }

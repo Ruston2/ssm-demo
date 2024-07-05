@@ -121,7 +121,6 @@ font {
   		for(Cookie c:cs){
   	  		if(c.getName().equals("name")){
   	  			username=c.getValue();
-//  	  			System.out.println(1);
   	  		}if(c.getName().equals("auto")){
                     username=c.getValue().split("@")[0];
                     auto=true;
@@ -209,7 +208,6 @@ font {
 
 
     $("#changeImg").click(function(){
-		console.log(12),
 		$(this).attr("src","${pageContext.request.contextPath}/mallUser/checkCode.do?"+new Date().getMilliseconds());
 	})
 </script>

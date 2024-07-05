@@ -219,8 +219,12 @@
 
     function openArticleModifyDialog() {
         var selectedRows = $("#dg").datagrid('getSelections');
-        if (selectedRows.length != 1) {
+        if (selectedRows.length == 0) {
             $.messager.alert("系统提示", "请选择一条要编辑的数据！");
+            return;
+        }
+        if (selectedRows.length > 1) {
+            $.messager.alert("系统提示", "同一时间只能编辑一条数据！");
             return;
         }
         var row = selectedRows[0];

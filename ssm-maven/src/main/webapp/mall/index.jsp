@@ -326,19 +326,11 @@
             for(let i=0;i<products.length;i++){
                 if(products[i].pname!=null&&products[i].pname!=""){
                     products[i].pname=products[i].pname.replace(pname,"<span>"+pname+"</span>");
-                    //resp.data[i].pname=resp.data[i].pname.replace(pname.toUpperCase(),"<span>"+pname.toUpperCase()+"</span>")
                 }
                 $("#itemul").append("<li>"+products[i].pname+"</li>");
             }
             $("#itemul").show();
             $("#completeShow").show();
-            <%--$("#itemul>li").click(function(){--%>
-            <%--    //console.log(2);--%>
-            <%--    console.log(this.innerText);--%>
-            <%--    $("#search").val(this.innerText);--%>
-            <%--    $("#itemul").hide()--%>
-            <%--    location.href="${pageContext.request.contextPath}/product/clickItem.do?pname="+this.innerText;--%>
-            <%--})--%>
             $(document).on('click', '#itemul>li', function(){
                 console.log(this.innerText);
                 $("#search").val(this.innerText);
@@ -347,11 +339,6 @@
             });
         });
     })
-    // $("#search").blur(function(){
-    //     $("#itemul").hide();
-    //     $("#completeShow").hide();
-    // });
-
 
 
     $("#sub").click(function(){
